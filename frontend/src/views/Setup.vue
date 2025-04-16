@@ -1,7 +1,3 @@
-<script lang="ts" setup>
-
-</script>
-
 <template>
   <section class="space-y-4">
     <div class="flex gap-4 items-center">
@@ -15,3 +11,9 @@
     </div>
   </section>
 </template>
+
+<script lang="ts" setup>
+
+</script>
+
+

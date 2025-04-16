@@ -1,96 +1,3 @@
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import OpenAIIcon from '../assets/icons/placeholder-openai.svg';
-import ClaudeIcon from '../assets/icons/placeholder-claude.svg';
-import GeminiIcon from '../assets/icons/placeholder-gemini.svg';
-
-const router = useRouter();
-
-// 模型大小选项
-const modelSizes = ref([
-  { id: 'small', label: '轻量版', active: true },
-  { id: 'medium', label: '标准版', active: false },
-  { id: 'large', label: '增强版', active: false }
-]);
-
-// 当前选中的模型大小信息
-const currentModelInfo = ref({
-  size: '1-3B 参数',
-  description: '适合日常对话和简单任务，对硬件要求较低',
-  compatibility: {
-    status: 'compatible',
-    text: '兼容',
-    specs: [
-      { icon: '💻', name: 'CPU: i5 12代', compatible: true },
-      { icon: '📊', name: '内存: 16GB', compatible: true },
-      { icon: '🎮', name: '显卡: GTX 1060', compatible: true }
-    ]
-  }
-});
-
-// API提供商列表
-const apiProviders = ref([
-  { name: 'OpenAI', icon: OpenAIIcon },
-  { name: 'Claude', icon: ClaudeIcon },
-  { name: 'Gemini', icon: GeminiIcon }
-]);
-
-// 切换模型大小
-const switchModelSize = (size: string) => {
-  modelSizes.value.forEach(s => s.active = s.id === size);
-
-  if (size === 'small') {
-    currentModelInfo.value = {
-      size: '1-3B 参数',
-      description: '适合日常对话和简单任务，对硬件要求较低',
-      compatibility: {
-        status: 'compatible',
-        text: '兼容',
-        specs: [
-          { icon: '💻', name: 'CPU: i5 12代', compatible: true },
-          { icon: '📊', name: '内存: 16GB', compatible: true },
-          { icon: '🎮', name: '显卡: GTX 1060', compatible: true }
-        ]
-      }
-    };
-  } else if (size === 'medium') {
-    currentModelInfo.value = {
-      size: '7-13B 参数',
-      description: '适合更复杂的任务，能处理多种语言和领域知识',
-      compatibility: {
-        status: 'compatible',
-        text: '兼容',
-        specs: [
-          { icon: '💻', name: 'CPU: i5 12代', compatible: true },
-          { icon: '📊', name: '内存: 16GB', compatible: true },
-          { icon: '🎮', name: '显卡: GTX 1060', compatible: true }
-        ]
-      }
-    };
-  } else {
-    currentModelInfo.value = {
-      size: '30B+ 参数',
-      description: '适合高级任务，提供最高质量输出，但需要强大硬件',
-      compatibility: {
-        status: 'incompatible',
-        text: '不兼容',
-        specs: [
-          { icon: '💻', name: 'CPU: i5 12代', compatible: true },
-          { icon: '📊', name: '内存: 16GB', compatible: false },
-          { icon: '🎮', name: '显卡: GTX 1060', compatible: false }
-        ]
-      }
-    };
-  }
-};
-
-// 跳转到API配置页面
-const goToApiConfig = () => {
-  router.push('/api');
-};
-</script>
-
 <template>
   <div class="bg-base-100 text-base-content flex flex-col gap-4">
     <!-- 顶部提示 -->
@@ -230,6 +137,102 @@ const goToApiConfig = () => {
     </div>
   </div>
 </template>
+
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import OpenAIIcon from '@/assets/icons/placeholder-openai.svg';
+import ClaudeIcon from '@/assets/icons/placeholder-claude.svg';
+import GeminiIcon from '@/assets/icons/placeholder-gemini.svg';
+
+const router = useRouter();
+
+// 模型大小选项
+const modelSizes = ref([
+  { id: 'small', label: '轻量版', active: true },
+  { id: 'medium', label: '标准版', active: false },
+  { id: 'large', label: '增强版', active: false }
+]);
+
+// 当前选中的模型大小信息
+const currentModelInfo = ref({
+  size: '1-3B 参数',
+  description: '适合日常对话和简单任务，对硬件要求较低',
+  compatibility: {
+    status: 'compatible',
+    text: '兼容',
+    specs: [
+      { icon: '💻', name: 'CPU: i5 12代', compatible: true },
+      { icon: '📊', name: '内存: 16GB', compatible: true },
+      { icon: '🎮', name: '显卡: GTX 1060', compatible: true }
+    ]
+  }
+});
+
+// API提供商列表
+const apiProviders = ref([
+  { name: 'OpenAI', icon: OpenAIIcon },
+  { name: 'Claude', icon: ClaudeIcon },
+  { name: 'Gemini', icon: GeminiIcon }
+]);
+
+// 切换模型大小
+const switchModelSize = (size: string) => {
+  modelSizes.value.forEach(s => s.active = s.id === size);
+
+  if (size === 'small') {
+    currentModelInfo.value = {
+      size: '1-3B 参数',
+      description: '适合日常对话和简单任务，对硬件要求较低',
+      compatibility: {
+        status: 'compatible',
+        text: '兼容',
+        specs: [
+          { icon: '💻', name: 'CPU: i5 12代', compatible: true },
+          { icon: '📊', name: '内存: 16GB', compatible: true },
+          { icon: '🎮', name: '显卡: GTX 1060', compatible: true }
+        ]
+      }
+    };
+  } else if (size === 'medium') {
+    currentModelInfo.value = {
+      size: '7-13B 参数',
+      description: '适合更复杂的任务，能处理多种语言和领域知识',
+      compatibility: {
+        status: 'compatible',
+        text: '兼容',
+        specs: [
+          { icon: '💻', name: 'CPU: i5 12代', compatible: true },
+          { icon: '📊', name: '内存: 16GB', compatible: true },
+          { icon: '🎮', name: '显卡: GTX 1060', compatible: true }
+        ]
+      }
+    };
+  } else {
+    currentModelInfo.value = {
+      size: '30B+ 参数',
+      description: '适合高级任务，提供最高质量输出，但需要强大硬件',
+      compatibility: {
+        status: 'incompatible',
+        text: '不兼容',
+        specs: [
+          { icon: '💻', name: 'CPU: i5 12代', compatible: true },
+          { icon: '📊', name: '内存: 16GB', compatible: false },
+          { icon: '🎮', name: '显卡: GTX 1060', compatible: false }
+        ]
+      }
+    };
+  }
+};
+
+// 跳转到API配置页面
+const goToApiConfig = () => {
+  router.push('/api');
+};
+</script>
+
+
 
 <style scoped>
 /* 所有样式已转换为Tailwind类，不再需要scoped CSS */
